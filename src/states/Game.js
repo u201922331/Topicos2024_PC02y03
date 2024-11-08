@@ -45,7 +45,9 @@ class Game extends Phaser.Scene {
     }
 
     update() {
+        this.updateTime();
         this.setPlayerSprite();
+        this.movePlayer();
     }
 
     setPlayerSprite() {
@@ -62,6 +64,20 @@ class Game extends Phaser.Scene {
 
     compareSprites(sprite1, sprite2) {
         return sprite1.texture == sprite2.texture
+    }
+
+    updateTime() {
+        this.time++;
+        this.textTime.setText('' + Phaser.Math.RoundTo(this.time / 150));
+    }
+
+    movePlayer() {
+        if (this.kW.isDown) {
+            this.player.y -= 1;
+        }
+        if (this.kS.isDown) {
+            this.player.y += 1;
+        }
     }
 };
 
