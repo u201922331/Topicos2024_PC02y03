@@ -8,6 +8,7 @@ class Game extends Phaser.Scene {
         this.score = null;
         this.lives = null;
         this.player = null;
+        this.enemy = null;
 
         this.textTime = null;
         this.textScore = null;
@@ -46,7 +47,21 @@ class Game extends Phaser.Scene {
 
     update() {
         this.updateTime();
+
+        if (this.lives <= 0 || this.time >= 1000) {
+            this.toGameOver();
+        }
+
         this.setPlayerSprite();
+
+        if (this.enemy != null) {
+            this.enemy.x += 2.5;
+            if (this.enemy.x >= this.bg.width)
+                this.enemy = null;
+        } else {
+            this.spawnEnemy();
+        }
+
         this.movePlayer();
     }
 
@@ -73,11 +88,23 @@ class Game extends Phaser.Scene {
 
     movePlayer() {
         if (this.kW.isDown) {
-            this.player.y -= 1;
+            this.player.y -= 2.5;
         }
         if (this.kS.isDown) {
-            this.player.y += 1;
+            this.player.y += 2.5;
         }
+    }
+
+    spawnEnemy() {
+        if (this.enemy == null) {
+            let yRand = Phaser.Math.Between(0, this.bg.height);
+            let enemyRand = Phaser.Math.RND.pick(['player', 'yellow', 'red', 'green'])
+            this.enemy = this.add.sprite(0, yRand, enemyRand).setOrigin(0, 0);
+        }
+    }
+
+    toGameOver() {
+        this.scene.start("GameOver", this.score);
     }
 };
 
