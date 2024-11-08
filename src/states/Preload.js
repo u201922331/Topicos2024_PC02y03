@@ -1,18 +1,18 @@
 import Phaser from "phaser";
 
-class Preload extends Phaser.Scenes {
+class Preload extends Phaser.Scene {
     constructor() {
         super({key: 'Preloader'});
     }
 
     preload() {
-        this.preload.images('menu', '../assets/fondos/menu.png');
-        this.preload.images('game', '../assets/fondos/game.png');
-        this.preload.images('game-over', '../assets/fondos/gam-over.jpg');
-        this.preload.images('player', '../assets/player.png');
-        this.preload.images('yellow', '../assets/amarillo.png');
-        this.preload.images('red', '../assets/rojo.png');
-        this.preload.images('green', '../assets/verde.png');
+        this.load.image('menu', '../assets/fondos/menu.png');
+        this.load.image('game', '../assets/fondos/game.png');
+        this.load.image('game-over', '../assets/fondos/gam-over.jpg');
+        this.load.image('player', '../assets/player.png');
+        this.load.image('yellow', '../assets/amarillo.png');
+        this.load.image('red', '../assets/rojo.png');
+        this.load.image('green', '../assets/verde.png');
     }
 
     create() {
