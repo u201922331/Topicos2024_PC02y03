@@ -20,7 +20,11 @@ class Menu extends Phaser.Scene {
             strokeThickness: 5
         };
         this.textTitle = this.add.text(0, 0, "Bica 4 life G_G and forever", this.fontStyle);
-        this.textStudent = this.add.text(0, 0, "Nander Emanuel Melendez Huamanchumo", this.fontStyle);
+        this.textStudent = this.add.text(0, this.textTitle.height, "Nander Emanuel Melendez Huamanchumo", this.fontStyle);
+    }
+
+    update() {
+        this.input.on('pointerdown', () => this.startGame());
     }
 
     startGame() {
