@@ -13,6 +13,11 @@ class Game extends Phaser.Scene {
         this.textScore = null;
         this.textLives = null;
         this.fontStyle = null;
+
+        this.kW = null;
+        this.kA = null;
+        this.kS = null;
+        this.kD = null;
     }
 
     create() {
@@ -23,7 +28,7 @@ class Game extends Phaser.Scene {
         this.player = this.add.sprite(this.bg.width / 2, this.bg.height / 2, 'player').setOrigin(0, 0);
 
         this.fontStyle = this.fontStyle = {
-            font: '40px Arial',
+            font: '20px Arial',
             fill: '#FFCC00',
             stroke: '#333',
             strokeThickness: 5
@@ -32,6 +37,27 @@ class Game extends Phaser.Scene {
         this.textTime = this.add.text(0, 0, "Tiempo: " + this.time, this.fontStyle);
         this.textScore = this.add.text(this.bg.width / 2, 0, "Puntaje: " + this.score, this.fontStyle);
         this.textLives = this.add.text(0, this.textTime.height, "Vidas: " + this.lives, this.fontStyle);
+
+        this.kW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.kA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.kS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.kD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    }
+
+    update() {
+        this.setPlayerSprite();
+    }
+
+    setPlayerSprite() {
+        if (this.kW.isDown) {
+            this.player.setTexture('yellow');
+        } else if (this.kA.isDown) {
+            this.player.setTexture('player');
+        } else if (this.kS.isDown) {
+            this.player.setTexture('red');
+        } else if (this.kD.isDown) {
+            this.player.setTexture('green');
+        }
     }
 
     compareSprites(sprite1, sprite2) {

@@ -14,7 +14,7 @@ class Menu extends Phaser.Scene {
     create() {
         this.bg = this.add.sprite(0, 0, 'menu').setOrigin(0, 0);
         this.fontStyle = {
-            font: '40px Arial',
+            font: '20px Arial',
             fill: '#FFCC00',
             stroke: '#333',
             strokeThickness: 5
